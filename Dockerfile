@@ -5,11 +5,11 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-# ts compile error 시에도 진행
-ENV TSC_COMPILE_ON_ERROR=true
+# TypeScript 설정을 임시로 생성
+RUN echo '{ "extends": "./tsconfig.json", "compilerOptions": { "noUnusedLocals": false, "noUnusedParameters": false, "allowUnusedLabels": true, "noImplicitAny": false } }' > tsconfig.prod.json
 
-# 이후 build로 변경
-RUN npm run build
+# 임시 TypeScript 설정으로 빌드
+RUN npx tsc -p tsconfig.prod.json --noEmit && npm run build
 
 # Stage 2: Production
 FROM nginx:alpine
