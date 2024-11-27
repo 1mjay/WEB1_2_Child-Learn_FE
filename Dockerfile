@@ -4,6 +4,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+
+# package.json의 build 스크립트를 임시로 수정
+RUN npm pkg set scripts.build="vite build"
+
+# 빌드 실행
 RUN npm run build
 
 # Stage 2: Production
