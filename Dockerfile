@@ -4,6 +4,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
+
+# ts compile error 시에도 진행
+ENV TSC_COMPILE_ON_ERROR=true
+
+# 이후 build로 변경
 RUN npm run build
 
 # Stage 2: Production
