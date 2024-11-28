@@ -66,4 +66,5 @@ jobs:
            --name ${{ env.NAME }} \
            --restart always \
           -e TZ=Asia/Seoul \
-           ${{ env.DOCKER_IMAGE }}:latest
+           ${{ env.DOCKER_IMAGE }}:latest \
+          docker image prune -f
