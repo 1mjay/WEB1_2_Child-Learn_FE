@@ -65,4 +65,5 @@ jobs:
            -e BACKEND_IP=${{ secrets.BACKEND_IP }} \
            --name ${{ env.NAME }} \
            --restart always \
+          -e TZ=Asia/Seoul \
            ${{ env.DOCKER_IMAGE }}:latest
