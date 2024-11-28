@@ -67,4 +67,7 @@ jobs:
            --restart always \
           -e TZ=Asia/Seoul \
            ${{ env.DOCKER_IMAGE }}:latest \
+
+      - name: Clean up old images
+        run: |
           docker image prune -f
